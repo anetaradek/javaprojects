@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Scanner;
 
 public class DiscountCalculator {
@@ -24,14 +22,10 @@ public class DiscountCalculator {
         else{
             discountedPrice= itemPrice;
         }
-        DecimalFormat df = new DecimalFormat("###0.00");
-        DecimalFormatSymbols dfs = df.getDecimalFormatSymbols();
 
-        dfs.setDecimalSeparator('.');
-        df.setDecimalFormatSymbols(dfs);
-        System.out.println("Discounted price is "+df.format(discountedPrice));
+        String s1 = String.format("Discounted price is %.2f\n",discountedPrice);
+        System.out.printf(s1);
         System.out.format("Discounted price is %.2f\n",discountedPrice);
-
 
     }
 }
