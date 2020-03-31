@@ -23,9 +23,6 @@ public class DiscountCalculator {
             discountedPrice= itemPrice;
         }
 
-        String s1 = String.format("Discounted price is %.2f\n",discountedPrice);
-        System.out.printf(s1);
-        System.out.format("Discounted price is %.2f\n",discountedPrice);
-
+        System.out.printf(String.format("Discounted price is %.2f\n",discountedPrice));
     }
 }
