@@ -1,36 +1,16 @@
 package CarEngine;
 
 public class Car {
-    public String name;
+    private String name;
     public Engine engine;
-    public int fuelTankCapacity;
-    public double remainingFuelAmount;
+    private int fuelTankCapacity;
+    private double remainingFuelAmount;
 
     public Car(String name, Engine engine, int fuelTankCapacity) {
         this.name = name;
         this.engine = engine;
         this.fuelTankCapacity = fuelTankCapacity;
         this.remainingFuelAmount = fuelTankCapacity;
-    }
-
-    public void startEngine() {
-        if (!engine.isStarted) {
-            engine.isStarted = true;
-            System.out.println("Car "+ name+ " is starting " +engine.name+ " engine");
-            System.out.println(engine.name + " engine has been started ");
-        } else {
-            System.out.println(engine.name + " engine has been started already in " + name);
-        }
-    }
-
-    public void stopEngine() {
-        if (!engine.isStarted) {
-            System.out.println(engine.name + " engine has been stopped already in " + name);
-        } else {
-            engine.isStarted = false;
-            System.out.println("Car "+ name + " is stopping " +engine.name+" engine");
-            System.out.println(engine.name + " engine has been stopped");
-        }
     }
 
     public void tank() {

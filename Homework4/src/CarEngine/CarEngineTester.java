@@ -7,15 +7,15 @@ public class CarEngineTester {
         Car vw = new Car("VW Golf", diesel, 50);
         vw.drive(100, 50);
         //Car VW Golf cant be driven cause engine stopped
-        vw.startEngine();
+        vw.engine.startEngine();
         //Car VW Golf is starting Diesel engine
         //Diesel engine has been started
-        vw.startEngine();
+        vw.engine.startEngine();
         //Diesel engine has been started already in VW Golf
-        vw.stopEngine();
+        vw.engine.stopEngine();
         //Car VW Golf is stopping Diesel engine
         //Diesel engine has been stopped
-        vw.startEngine();
+        vw.engine.startEngine();
         //Car VW Golf is starting Diesel engine
         //Diesel engine has been started
         vw.drive(100, 50);
