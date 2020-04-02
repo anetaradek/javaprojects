@@ -26,7 +26,7 @@ public class MobilePhone {
   public void installApplication(String appName,int appNeededMemory) {
       if (freeMemory >= appNeededMemory) {
           freeMemory=freeMemory-appNeededMemory;
-          System.out.println("Application " + appName + " has been installed on " + brandAndModel + ". Remain memory: " + freeMemory);
+          System.out.println("Application " + appName + " has been installed on " + brandAndModel + ". Remain memory: " + freeMemory + " MB");
       }else{
           System.out.println("Application "+ appName + " can't be installed on "+ brandAndModel +". There are no enough memory");
       }

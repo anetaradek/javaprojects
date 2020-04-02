@@ -3,6 +3,7 @@ package Cat;
 public class Cat {
 public String name;
 public Boolean isItHungry = true;
+
 public void isHungry(){
     if(!isItHungry){
         System.out.println(name+ " is not hungry");
