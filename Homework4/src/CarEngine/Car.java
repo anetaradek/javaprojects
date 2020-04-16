@@ -5,6 +5,7 @@ public class Car {
     private Engine engine;
     private int fuelTankCapacity;
     private double remainingFuelAmount;
+    private Boolean isStarted = false;
 
     public Car(String name, Engine engine, int fuelTankCapacity) {
         this.name = name;
@@ -21,7 +22,7 @@ public class Car {
     public void drive(int speed, int km) {
         if (remainingFuelAmount == 0) {
             System.out.println("Car " + name + " can't be driven. Tank is empty");
-        } else if (!engine.getStarted()) {
+        } else if (!isStarted) {
             System.out.println("Car " + name + " can't be driven cause engine stopped");
         } else {
             int maxSpeed = engine.getHorsepower() * 2;
@@ -44,22 +45,22 @@ public class Car {
         }
     }
         public void startEngine() {
-            if (!engine.getStarted()) {
-                engine.setStarted(true);
-                System.out.println("Car "+ name+ " is starting " +name+ " engine");
-                System.out.println(name + " engine has been started ");
+            if (!isStarted) {
+                isStarted=true;
+                System.out.println("Car "+ name+ " is starting " +engine.getName()+ " engine");
+                System.out.println(engine.getName() + " engine has been started ");
             } else {
-                System.out.println(name + " engine has been started already in " + name);
+                System.out.println(engine.getName() + " engine has been started already in " + name);
             }
         }
 
         public void stopEngine() {
-            if (!engine.getStarted()) {
-                System.out.println(name + " engine has been stopped already in " + name);
+            if (!isStarted) {
+                System.out.println(engine.getName() + " engine has been stopped already in " + name);
             } else {
-                engine.setStarted(false);
-                System.out.println("Car "+ name + " is stopping " +name+" engine");
-                System.out.println(name + " engine has been stopped");
+                isStarted = false;
+                System.out.println("Car "+ name + " is stopping " +engine.getName()+" engine");
+                System.out.println(engine.getName() + " engine has been stopped");
             }
         }
 
