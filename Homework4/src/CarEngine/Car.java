@@ -13,6 +13,14 @@ public class Car {
         this.remainingFuelAmount = fuelTankCapacity;
     }
 
+    public void startEngine(){
+        engine.start();
+    }
+
+    public void stopEngine(){
+        engine.stop();
+    }
+
     public void tank() {
         System.out.println("Car " + name + " has been tanked up");
         remainingFuelAmount = fuelTankCapacity;

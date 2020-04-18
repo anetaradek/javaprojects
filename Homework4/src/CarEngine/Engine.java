@@ -24,7 +24,7 @@ public class Engine {
         return isStarted;
     }
 
-    public void startEngine() {
+    public void start() {
         if (!isStarted) {
             isStarted = true;
             System.out.println("Car "+ name+ " is starting " +getName()+ " engine");
@@ -34,7 +34,7 @@ public class Engine {
         }
     }
 
-    public void stopEngine() {
+    public void stop() {
         if (!isStarted) {
             System.out.println(getName() + " engine has been stopped already in " + name);
         } else {
