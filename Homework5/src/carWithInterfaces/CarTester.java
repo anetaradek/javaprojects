@@ -1,6 +1,7 @@
 package carWithInterfaces;
 
 public class CarTester {
+
     public static void main(String[] args) {
 
         Car fuelCar = new FuelCar("Honda", "Civic");
@@ -10,14 +11,20 @@ public class CarTester {
         Car[] cars = {fuelCar, electricCar, hybridCar, hybridCar2};
 
         for(Car car :cars) {
-            if(car instanceof Tankable){
-                ((Tankable) car).tank();
-                System.out.println(car.getManufacturer()+" "+car.getModel()+" is tanked");
-            }
-            if(car instanceof Chargeable){
-                ((Chargeable) car).charge();
-                System.out.println(car.getManufacturer()+" "+car.getModel()+" is charged");
-            }
+            tankOrCharge(car);
+        }
+    }
+    private static void tankOrCharge(Car car){
+        if(car instanceof Tankable){
+            ((Tankable) car).tank();
+            System.out.println(car.getManufacturer()+" "+car.getModel()+" is tanked");
+        }
+        if(car instanceof Chargeable){
+            ((Chargeable) car).charge();
+            System.out.println(car.getManufacturer()+" "+car.getModel()+" is charged");
         }
     }
 }
+//Instead of loop with instanceof if
+// we want to have a method.
+//But call for method can be done from loop.
