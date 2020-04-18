@@ -1,6 +1,6 @@
 package carWithInterfaces;
 
-public class ElectricCar extends Car implements Chargable {
+public class ElectricCar extends Car implements Chargeable {
 
     public ElectricCar(String manufacturer, String model) {
         super(manufacturer, model);
@@ -8,6 +8,6 @@ public class ElectricCar extends Car implements Chargable {
 
     @Override
     public void charge() {
-        System.out.println("Charging...");
+        System.out.println("Charging Electric Car...");
     }
 }

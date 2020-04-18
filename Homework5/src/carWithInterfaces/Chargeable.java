@@ -1,5 +1,5 @@
 package carWithInterfaces;
 
-public interface Chargable {
+public interface Chargeable {
     void charge();
 }

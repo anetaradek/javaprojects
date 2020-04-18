@@ -1,6 +1,6 @@
 package carWithInterfaces;
 
-public class HybridCar extends Car implements Tankable, Chargable {
+public class HybridCar extends Car implements Tankable, Chargeable {
 
     public HybridCar(String manufacturer, String model) {
         super(manufacturer, model);
@@ -8,12 +8,12 @@ public class HybridCar extends Car implements Tankable, Chargable {
 
     @Override
     public void charge() {
-        System.out.println("Charging...");
+        System.out.println("Charging Hybrid Car...");
     }
 
     @Override
     public void tank() {
-        System.out.println("Refueling...");
+        System.out.println("Refueling Hybrid Car...");
 
     }
 }

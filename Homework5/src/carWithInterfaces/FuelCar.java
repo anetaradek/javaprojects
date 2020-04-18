@@ -8,6 +8,6 @@ public class FuelCar extends Car implements Tankable {
 
     @Override
     public void tank() {
-        System.out.println("Refueling...");
+        System.out.println("Refueling Fuel Car...");
     }
 }

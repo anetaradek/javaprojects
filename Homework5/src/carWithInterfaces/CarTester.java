@@ -14,8 +14,8 @@ public class CarTester {
                 ((Tankable) car).tank();
                 System.out.println(car.getManufacturer()+" "+car.getModel()+" is tanked");
             }
-            if(car instanceof Chargable){
-                ((Chargable) car).charge();
+            if(car instanceof Chargeable){
+                ((Chargeable) car).charge();
                 System.out.println(car.getManufacturer()+" "+car.getModel()+" is charged");
             }
         }
