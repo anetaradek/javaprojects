@@ -39,14 +39,17 @@ public class Car {
             double neededFuel = km * 0.1 * engine.getCapacity() / 1000;
             if (remainingFuelAmount > neededFuel) {
                 remainingFuelAmount = remainingFuelAmount - neededFuel;
-                System.out.println("Car " + name + " has been driven for " + km + " km with speed " + speed + " km/h. Remaining fuel: " +
+                System.out.println("Car " + name + " has been driven for " + km + " km with speed " + speed + " km/h. " +
+                        "Remaining fuel: " +
                         (int) remainingFuelAmount + "L");
             } else if (remainingFuelAmount == neededFuel) {
                 remainingFuelAmount = 0;
-                System.out.println("Car " + name + " has been driven for " + km + " km with speed " + speed + " km/h. Tank is empty");
+                System.out.println("Car " + name + " has been driven for " + km + " km with speed " + speed + " km/h." +
+                        " Tank is empty");
             } else {
                 double maxKm = remainingFuelAmount * 10000 / engine.getCapacity();
-                System.out.println("Car " + name + " has been driven for " + (int) maxKm + " km with speed " + speed + " km/h. Tank is empty");
+                System.out.println("Car " + name + " has been driven for " + (int) maxKm + " km with speed " + speed +
+                                "km/h. Tank is empty");
                 remainingFuelAmount = 0;
             }
         }
