@@ -21,6 +21,6 @@ public class UniqueLetters {
             String s=Character.toString(c);
             uniqueLetters.add(s);
         }
-        System.out.println(uniqueLetters);
+        System.out.println("The unique letters are: "+uniqueLetters);
     }
 }
