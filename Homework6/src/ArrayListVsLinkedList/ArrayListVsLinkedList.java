@@ -1,7 +1,12 @@
 package ArrayListVsLinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArrayListVsLinkedList {
     public static void main(String[] args) {
+        long begginingTime = System.currentTimeMillis();
+        List<Integer> arraylist= new ArrayList<>();
 
     }
 }
