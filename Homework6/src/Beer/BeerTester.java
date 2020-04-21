@@ -8,6 +8,14 @@ public class BeerTester {
         Beer beer4=new Beer("KSIĄŻĘCE","WEIZEN",5.3,500);
         Beer beer5=new Beer("KSIĄŻĘCE","PORTER",8,500);
         System.out.println(beer1.equals(beer2));
-        System.out.println(beer2.equals(beer3));
+        System.out.println(beer2.equals(beer1));
+        System.out.println(beer3.equals(beer4));
+        System.out.println(beer4.equals(beer5));
+        System.out.println(beer1.hashCode());
+        System.out.println(beer2.hashCode());
+        System.out.println(beer3.hashCode());
+        System.out.println(beer4.hashCode());
+        System.out.println(beer5.hashCode());
+
     }
 }
