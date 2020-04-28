@@ -1,31 +1,51 @@
 package ArrayListVsLinkedList;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ArrayListVsLinkedList {
     public static void main(String[] args) {
-        long begginingTime = System.currentTimeMillis();
-        List<Integer> arraylist= new ArrayList<>();
 
+        long begginingTimeArrayList = System.currentTimeMillis();
+        List<Integer> arrayList= new ArrayList<>();
+        for (int i = 0; i <100_000; i++) {
+            arrayList.add(i);
+        }
+        long endingTimeArrayList = System.currentTimeMillis();
+        long totalLoopTimeArrayList = endingTimeArrayList-begginingTimeArrayList;
+        System.out.println("ArrayList total iteration time "+totalLoopTimeArrayList);
+
+        long begginingTimeLinkedList = System.currentTimeMillis();
+        List<Integer> linkedList= new LinkedList<>();
+        for (int i = 0; i <100_000; i++) {
+            linkedList.add(i);
+        }
+        long endingTimeLinkedList = System.currentTimeMillis();
+        long totalLoopTimeLinkedList = endingTimeLinkedList-begginingTimeLinkedList;
+        System.out.println("LinkedList total iteration time "+totalLoopTimeLinkedList);
+
+        long begginingTimeArrayList2 = System.currentTimeMillis();
+
+        for (int i = 0; i <100_000; i++) {
+            arrayList.get(i);
+        }
+        long endingTimeArrayList2 = System.currentTimeMillis();
+        long totalLoopTimeArrayList2 = endingTimeArrayList2-begginingTimeArrayList2;
+        System.out.println("ArrayList total iteration time "+totalLoopTimeArrayList2);
+        for (int i = 0; i <100_000; i++) {
+            linkedList.get(i);
+        }
+        long endingTimeLinkedList2 = System.currentTimeMillis();
+        long totalLoopTimeLinkedList2 = endingTimeArrayList-begginingTimeArrayList;
+        System.out.println("LinkedList total iteration time "+totalLoopTimeLinkedList2);
+        System.out.println("Execution time to store elements in arrayList is longer because we save element\n" +
+                " via index, whereas in linkedList elements are connected to the previous and next element,\n" +
+                " so we just save our element as next element");
+        System.out.println("Execution time for getting elements in arrayList is faster because we just get the element\n" +
+                "by it's index, whereas in linkedList elements are connected to the previous and next element, \n" +
+                "so we get access to target element via first element through next elements until \n" +
+                "we get to our target element");
     }
 }
-//Save the system time as a start point. System.currentTimeMillis()
-//Create ArrayList of Integers.
-//Prepare loop for 100_000 iterations.
-//Inside of loop add to list new element, but at 0 position. add(0, number). As a number you can use an i from loop, for example. Or anything else.
-//After loop save end point system time.
-//Printout to console time spent to loop execution.
-//
-//Repeat previous steps, but this time create LinkedList of Integers.
-//Compare execution time for both cases.
-//
-//Save another one start point time.
-//Create loop from 0 to 100_000, and inside of loop get from previously created ArrayList elements by index i, so get(i)
-//Save end point time.
-//Printout to console execution time.
-//
-//Repeat getting steps but for previously created LinkedList.
-//Compare execution time.
-//
-//Why execution time is different? How you can explain it?
