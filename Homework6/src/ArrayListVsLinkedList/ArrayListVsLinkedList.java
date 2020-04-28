@@ -11,7 +11,8 @@ public class ArrayListVsLinkedList {
         long begginingTimeArrayList = System.currentTimeMillis();
         List<Integer> arrayList= new ArrayList<>();
         for (int i = 0; i <100_000; i++) {
-            arrayList.add(i);
+            if(i==0){arrayList.add(0,i); }
+            else arrayList.add(i);
         }
         long endingTimeArrayList = System.currentTimeMillis();
         long totalLoopTimeArrayList = endingTimeArrayList-begginingTimeArrayList;
@@ -20,7 +21,8 @@ public class ArrayListVsLinkedList {
         long begginingTimeLinkedList = System.currentTimeMillis();
         List<Integer> linkedList= new LinkedList<>();
         for (int i = 0; i <100_000; i++) {
-            linkedList.add(i);
+            if(i==0){linkedList.add(0,i); }
+            else linkedList.add(i);
         }
         long endingTimeLinkedList = System.currentTimeMillis();
         long totalLoopTimeLinkedList = endingTimeLinkedList-begginingTimeLinkedList;
