@@ -1,8 +1,6 @@
 package ItemsInOnlineShop;
 
-import java.util.Comparator;
-
-public class Item implements Comparable<Item>, Comparator<Item> {
+public class Item implements Comparable<Item>{
     private String name;
     private int price;
 
@@ -24,14 +22,8 @@ public class Item implements Comparable<Item>, Comparator<Item> {
 
     @Override
     public int compareTo(Item item) {
-    return this.getName().compareTo(item.getName());
+        return this.getName().compareTo(item.getName());
     }
-
-    @Override
-    public int compare(Item item, Item item2) {
-        return item.getPrice()-item2.getPrice();
-    }
-
     @Override
     public String toString() {
         return "Item{" +

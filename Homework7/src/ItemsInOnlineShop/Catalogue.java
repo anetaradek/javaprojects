@@ -24,9 +24,9 @@ public class Catalogue {
     }
 
     public void sortByPrice(){
-        Collections.sort(items,new Item());
+        Collections.sort(items,new ItemComparator());
     }
     public void sortByPriceReversed(){
-        Collections.sort(items,Collections.reverseOrder(new Item()));
+        Collections.sort(items,Collections.reverseOrder(new ItemComparator()));
     }
 }
