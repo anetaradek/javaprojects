@@ -20,12 +20,8 @@ public class Laptop implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         Laptop cloned = (Laptop) super.clone();
-        cloned.name = this.name;
         cloned.processor = (Processor) this.processor.clone();
         cloned.hardDrive = (HardDrive) this.hardDrive.clone();
-        cloned.displaySize = this.displaySize;
-        cloned.weight = this.weight;
-        cloned.RAMamount = this.RAMamount;
         return cloned;
     }
 

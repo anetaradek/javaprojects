@@ -42,14 +42,14 @@ public class ArrayListVsLinkedList {
 
     public static void linkedList () {
         List<Integer> linkedList = new LinkedList<>();
-        long begginingTimeLinkedList = System.currentTimeMillis();
+        long beginningTimeLinkedList = System.currentTimeMillis();
         for (int i = 0; i < 100_000; i++) {
             if (i == 0) {
                 linkedList.add(0, i);
             } else linkedList.add(i);
         }
         long endingTimeLinkedList = System.currentTimeMillis();
-        long totalLoopTimeLinkedList = endingTimeLinkedList - begginingTimeLinkedList;
+        long totalLoopTimeLinkedList = endingTimeLinkedList - beginningTimeLinkedList;
         System.out.println("LinkedList adding total iteration time " + totalLoopTimeLinkedList);
 
 

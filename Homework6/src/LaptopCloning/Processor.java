@@ -25,9 +25,6 @@ public class Processor implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         Processor clonedP = (Processor) super.clone();
-        clonedP.name=this.name;
-        clonedP.frequency=this.frequency;
-        clonedP.numberOfCores=this.numberOfCores;
         return clonedP;
     }
 

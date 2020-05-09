@@ -26,9 +26,6 @@ public class HardDrive implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         HardDrive clonedH = (HardDrive) super.clone();
-        clonedH.name=this.name;
-        clonedH.type=this.type;
-        clonedH.capacity=this.capacity;
         return clonedH;
     }
 
