@@ -1,6 +1,7 @@
 package Bank;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,25 +14,29 @@ public abstract class Account {
     private BigDecimal percents;
 
     private List<String> transactionHistory;
-
     private static int lastAccountNumber;
+    DecimalFormat decimalFormat= new DecimalFormat("#.##########");
 
     public Account(BigDecimal percents) {
         balance = BigDecimal.ZERO;
-        //lastAccountNumber++;
         accountNumber=++lastAccountNumber;
         this.percents=percents;
         transactionHistory = new ArrayList<>();
     }
     Date date = new Date();
-    public BigDecimal topUp(BigDecimal amount){
+    public BigDecimal topUp(BigDecimal amount) throws NegativeValueException {
+        if(amount.compareTo(BigDecimal.ZERO)<0){
+            throw new NegativeValueException("The value of topUp cannot be negative");
+        }
+        addTransactionLog(LocalDateTime.now(),"topUp",balance,balance.add(amount));
         balance = balance.add(amount);
         return balance;
     }
 
-    public void addTransactionLog(long time, String transName, BigDecimal balanceBeforeOperation, BigDecimal balance){
-        transactionHistory.add(time +" "+transName +" Balance before operation: "+balanceBeforeOperation+"," +
-                " Balance after operation: "+balance);
+
+    public void addTransactionLog(LocalDateTime time, String transName, BigDecimal balanceBeforeOperation, BigDecimal balance){
+        transactionHistory.add("\n"+time +" "+transName +" Balance before operation: "+balanceBeforeOperation+"," +
+                " Balance after operation: "+decimalFormat.format(balance));
     }
 
     public List<String> getTransactionHistory() {
@@ -39,17 +44,22 @@ public abstract class Account {
         return null;
     }
 
-    public abstract void withDraw(BigDecimal amount);
+    public abstract void withDraw(BigDecimal amount) throws NegativeValueException, Exception;
 
-    public abstract BigDecimal applyPercentage();
+    public abstract BigDecimal applyPercentage() throws NegativeValueException;
 
-    public abstract BigDecimal transferMoney(String bankName, int accountNumber, BigDecimal amount) throws Exception;
+    public abstract BigDecimal transferMoney(String bankName, int accountNumber, BigDecimal amount) throws Exception, NegativeValueException;
 
     public BigDecimal getBalance(){
         return balance;
     }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     public BigDecimal getPercentsAsMultiplier(){
-        return percents.divide(BigDecimal.valueOf(100)).add(BigDecimal.ONE);
+        return percents.multiply(BigDecimal.valueOf(0.01)).add(BigDecimal.ONE);
     }
 
 

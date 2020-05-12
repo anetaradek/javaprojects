@@ -1,17 +1,16 @@
 package Bank;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class BankApplication {
     private static final String ALIOR_BANK_NAME = "Alior Bank";
     private static final String MBANK_BANK_NAME = "mBank";
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws NegativeValueException {
         init();
     }
-    private static void init(){
+
+    private static void init() throws NegativeValueException {
         NationalBank nb = NationalBank.getInstance();
 
         Bank alior = new Bank(ALIOR_BANK_NAME);
@@ -34,13 +33,58 @@ public class BankApplication {
         System.out.println(mbankCredit.toString());
         mbank.addAccount(mbankCredit);
         mbank.addAccount(mbankDeposit);
-
-        aliorCredit.withDraw(BigDecimal.valueOf(100));
         try {
-            mbankDeposit.transferMoney(mbank.getName(), mbankCredit.getAccountNumber(), BigDecimal.valueOf(200));
+            aliorCredit.topUp(BigDecimal.valueOf(2000));
         }
-        catch(Exception e){
+        catch (NegativeValueException e){
             System.out.println(e);
         }
+        try{
+        aliorDeposit.topUp(BigDecimal.valueOf(1000));
+        }
+        catch (NegativeValueException e){
+            System.out.println(e);
+        }
+        try {
+            mbankCredit.topUp(BigDecimal.valueOf(3000));
+        }
+        catch (NegativeValueException e){
+            System.out.println(e);
+        }
+        try {
+            mbankDeposit.topUp(BigDecimal.valueOf(4000));
+        }
+        catch (NegativeValueException e){
+            System.out.println(e);
+        }
+
+
+        try {
+            aliorCredit.withDraw(BigDecimal.valueOf(-100));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        try {
+            aliorDeposit.transferMoney(mbank.getName(), mbankCredit.getAccountNumber(), BigDecimal.valueOf(200));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        mbankDeposit.applyPercentage();
+        aliorDeposit.applyPercentage();
+
+
+        try {
+            aliorCredit.transferMoney(mbank.getName(), mbankDeposit.getAccountNumber(), BigDecimal.valueOf(-100));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
+        aliorCredit.getTransactionHistory();
+        aliorDeposit.getTransactionHistory();
+        mbankCredit.getTransactionHistory();
+        mbankDeposit.getTransactionHistory();
     }
 }

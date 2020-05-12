@@ -1,6 +1,7 @@
 package Bank;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class DepositAccount extends Account {
     public DepositAccount(BigDecimal percents) {
@@ -8,28 +9,35 @@ public class DepositAccount extends Account {
     }
 
     @Override
-    public void withDraw(BigDecimal amount) {
+    public void withDraw(BigDecimal amount) throws NegativeValueException, Exception {
         BigDecimal balanceBeforeOperation = getBalance();
+        if (amount.compareTo(BigDecimal.ZERO)<0){
+            throw new NegativeValueException("The value of amount to transfer cannot be negative");
+        }
+        if (amount.compareTo(getBalance())>0){
+            throw new Exception("No sufficient funds on account");
+        }
         if(amount.compareTo(getBalance())<=0){
-            topUp(amount.negate());
-            addTransactionLog(date.getTime(), "WithDraw", balanceBeforeOperation, getBalance());
+            setBalance(amount.negate().add(getBalance()));
+            addTransactionLog(LocalDateTime.now(), "WithDraw", balanceBeforeOperation, getBalance());
             System.out.println("You have withdrawn "+amount+". The balance now is: "+getBalance());
         }
-        //else throw
     }
 
     @Override
-    public BigDecimal applyPercentage() {
+    public BigDecimal applyPercentage() throws NegativeValueException {
         BigDecimal balanceBeforeOperation = getBalance();
-        topUp(getBalance().multiply(getPercentsAsMultiplier()));
-        addTransactionLog(date.getTime(),"ApplyPercents",balanceBeforeOperation,getBalance());
+        setBalance(getBalance().multiply(getPercentsAsMultiplier()));
+        addTransactionLog(LocalDateTime.now(),"ApplyPercents",balanceBeforeOperation,getBalance());
         System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
         return null;
     }
 
     @Override
-    public BigDecimal transferMoney(String bankName, int accountNumber, BigDecimal amount) throws Exception {
-        //TODO:exception żeby nie było amount<0;
+    public BigDecimal transferMoney(String bankName, int accountNumber, BigDecimal amount) throws Exception, NegativeValueException {
+        if (amount.compareTo(BigDecimal.ZERO)<0){
+            throw new NegativeValueException("The value of amount to transfer cannot be negative");
+        }
         if (amount.compareTo(getBalance())> 0){
             throw new Exception("No sufficient funds exception");
         }
@@ -37,10 +45,11 @@ public class DepositAccount extends Account {
         Bank bank = NationalBank.getInstance().getByName(bankName);
         Account account = bank.getByNumber(accountNumber);
         BigDecimal balanceBeforeOperationForTargetAccount =account.getBalance();
-        topUp(amount.negate());
-        account.topUp(amount);
-        addTransactionLog(date.getTime(),"transfer Money",balanceBeforeOperation,getBalance());
-        addTransactionLog(date.getTime(),"transfer Money",balanceBeforeOperationForTargetAccount,getBalance());
+        setBalance(amount.negate().add(getBalance()));
+        account.setBalance(amount.add(account.getBalance()));
+        addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperation,getBalance());
+        account.addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperationForTargetAccount,
+                account.getBalance());
         System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
         return null;
     }

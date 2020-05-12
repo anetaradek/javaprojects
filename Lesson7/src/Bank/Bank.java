@@ -18,6 +18,7 @@ public class Bank {
             if (account.getAccountNumber() == number) {
                 return account;
             }
+
         }
         return null;//TODO: exception
     }

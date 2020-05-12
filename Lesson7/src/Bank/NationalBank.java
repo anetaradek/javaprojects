@@ -2,7 +2,7 @@ package Bank;
 
 import java.util.HashSet;
 import java.util.Set;
-
+//Singleton
 public class NationalBank {
     private Set<Bank> banks;
 
