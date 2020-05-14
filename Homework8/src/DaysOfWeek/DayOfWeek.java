@@ -29,14 +29,6 @@ public enum DayOfWeek {
         return polishName;
     }
 
-    public void fromEnglishName() {
-        System.out.println(getEnglishName());
-
-    }
-
-    public void fromPolishName() {
-        System.out.println(getPolishName());
-    }
 
     public void isWorking() {
         if (isWorking) {
@@ -73,4 +65,22 @@ public enum DayOfWeek {
         }
         System.out.println(workingDays.toString());
     }
+
+    public static DayOfWeek fromEnglishName(String englishName) {
+        for (DayOfWeek day : values()) {
+            if (day.englishName.equals(englishName)) {
+                return day;
+            }
+        }throw new IllegalArgumentException("There is no day with given polish name");
+    }
+
+    public static DayOfWeek fromPolishName(String polishName) {
+        for (DayOfWeek day : values()) {
+            if (day.polishName.equals(polishName)) {
+                return day;
+            }
+        }
+        throw new IllegalArgumentException("There is no day with given polish name");
+    }
 }
+

@@ -10,7 +10,7 @@ public class DaysOfWeekTester {
         SAT.isWeekend();
         WED.isWorking();
         SUN.isWorking();
-        THU.fromEnglishName();
-        TUE.fromPolishName();
+        System.out.println(fromPolishName("Wtorek"));
+        System.out.println(fromEnglishName("Thursday"));
     }
 }
