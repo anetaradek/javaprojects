@@ -6,8 +6,9 @@ import static DaysOfWeek.DayOfWeek.*;
 
 public class DaysOfWeekTester {
     public static void main(String[] args) {
-        System.out.println((Arrays.toString(getWeekends().toArray())));
-        System.out.println(Arrays.toString(getWorkingDays().toArray()));
+        printElements(getWeekends());
+        printElements(getWorkingDays());
+
         System.out.println(MON.isWeekend());
         System.out.println(SAT.isWeekend());
         System.out.println(WED.isWorking());

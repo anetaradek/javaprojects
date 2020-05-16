@@ -79,5 +79,10 @@ public enum DayOfWeek {
         }
         throw new IllegalArgumentException("There is no day with polish name "+polishName);
     }
+    public static void printElements(Collection c){
+        for (Object d : c) {
+            System.out.println(d);
+        }
+    }
 }
 
