@@ -1,6 +1,7 @@
 package DaysOfWeek;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public enum DayOfWeek {
@@ -30,40 +31,36 @@ public enum DayOfWeek {
     }
 
 
-    public void isWorking() {
-        if (isWorking) {
-            System.out.println(true);
-        } else {
-            System.out.println(false);
-        }
+    public boolean isWorking() {
+        boolean isWorking2;
+        isWorking2= isWorking;
+        return isWorking2;
     }
 
-    public void isWeekend() {
-        if (!isWorking) {
-            System.out.println(true);
-        } else {
-            System.out.println(false);
-        }
+    public boolean isWeekend() {
+        boolean isWeekend;
+        isWeekend= !isWorking;
+        return isWeekend;
     }
 
-    public static void getWeekends() {
+    public static Collection<DayOfWeek> getWeekends() {
         List<DayOfWeek> weekend = new ArrayList<>();
         for (DayOfWeek day : DayOfWeek.values()) {
             if (!day.isWorking) {
                 weekend.add(day);
             }
         }
-        System.out.println(weekend.toString());
+        return weekend;
     }
 
-    public static void getWorkingDays() {
+    public static Collection<DayOfWeek> getWorkingDays() {
         List<DayOfWeek> workingDays = new ArrayList<>();
         for (DayOfWeek day : DayOfWeek.values()) {
             if (day.isWorking) {
                 workingDays.add(day);
             }
         }
-        System.out.println(workingDays.toString());
+        return workingDays;
     }
 
     public static DayOfWeek fromEnglishName(String englishName) {
@@ -71,7 +68,7 @@ public enum DayOfWeek {
             if (day.englishName.equals(englishName)) {
                 return day;
             }
-        }throw new IllegalArgumentException("There is no day with given polish name");
+        }throw new IllegalArgumentException("There is no day with english name "+englishName);
     }
 
     public static DayOfWeek fromPolishName(String polishName) {
@@ -80,7 +77,7 @@ public enum DayOfWeek {
                 return day;
             }
         }
-        throw new IllegalArgumentException("There is no day with given polish name");
+        throw new IllegalArgumentException("There is no day with polish name "+polishName);
     }
 }
 
