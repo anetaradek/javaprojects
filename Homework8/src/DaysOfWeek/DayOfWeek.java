@@ -32,15 +32,11 @@ public enum DayOfWeek {
 
 
     public boolean isWorking() {
-        boolean isWorking2;
-        isWorking2= isWorking;
-        return isWorking2;
+        return isWorking;
     }
 
     public boolean isWeekend() {
-        boolean isWeekend;
-        isWeekend= !isWorking;
-        return isWeekend;
+        return !isWorking;
     }
 
     public static Collection<DayOfWeek> getWeekends() {
@@ -78,11 +74,6 @@ public enum DayOfWeek {
             }
         }
         throw new IllegalArgumentException("There is no day with polish name "+polishName);
-    }
-    public static void printElements(Collection collection){
-        for (Object d : collection) {
-            System.out.println(d);
-        }
     }
 }
 
