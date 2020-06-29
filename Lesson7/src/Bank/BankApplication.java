@@ -70,9 +70,16 @@ public class BankApplication {
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        try{
         mbankDeposit.applyPercentage();
-        aliorDeposit.applyPercentage();
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+        try{
+            aliorDeposit.applyPercentage();
+        }catch (Exception e) {
+            System.out.println(e);
+        }
 
 
         try {

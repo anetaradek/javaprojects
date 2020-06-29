@@ -19,7 +19,7 @@ public class CreditAccount extends Account {
         }
         BigDecimal balanceBeforeOperation = getBalance();
         if (amount.compareTo(getBalance().add(creditLimit)) <= 0) {
-            setBalance(amount.negate().add(getBalance()));
+            super.topUp(amount.negate());
             addTransactionLog(LocalDateTime.now(), "WithDraw", balanceBeforeOperation, getBalance());
             System.out.println("You have withdrawn "+amount+". The balance now is: "+getBalance());
         } if(amount.compareTo(getBalance().add(creditLimit)) > 0) {
@@ -31,10 +31,10 @@ public class CreditAccount extends Account {
     @Override
     public BigDecimal applyPercentage() throws NegativeValueException {
         BigDecimal balanceBeforeOperation = getBalance();
-            setBalance(getBalance().multiply(getPercentsAsMultiplier()));
+            super.topUp(getBalance().multiply(getPercentsAsMultiplier()));
             addTransactionLog(LocalDateTime.now(),"ApplyPercents",balanceBeforeOperation,getBalance());
         System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
-        return null;
+        return getBalance();
     }
 
     @Override
@@ -49,12 +49,12 @@ public class CreditAccount extends Account {
         Bank bank = NationalBank.getInstance().getByName(bankName);
         Account account = bank.getByNumber(accountNumber);
         BigDecimal balanceBeforeOperationForTargetAccount =account.getBalance();
-        setBalance(amount.negate().add(getBalance()));
-        account.setBalance(amount.add(account.getBalance()));
+        super.topUp(amount.negate());
+        account.topUp(amount);
         addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperation,getBalance());
         account.addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperationForTargetAccount,account.getBalance());
         System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
-        return null;
+        return getBalance();
     }
 }
 
