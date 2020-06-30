@@ -47,9 +47,10 @@ public class DepositAccount extends Account {
         BigDecimal balanceBeforeOperationForTargetAccount =account.getBalance();
         topUp(amount.negate(),false);
         account.topUp(amount,false);
-        addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperation,getBalance());
-        account.addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperationForTargetAccount,
+        addTransactionLog(LocalDateTime.now(),"transfer money to different account",balanceBeforeOperation,getBalance());
+        account.addTransactionLog(LocalDateTime.now(),"getting transfer of money from different account",balanceBeforeOperationForTargetAccount,
                 account.getBalance());
+        System.out.println("You have transfer "+amount+" to account number "+ accountNumber);
         return null;
     }
 }

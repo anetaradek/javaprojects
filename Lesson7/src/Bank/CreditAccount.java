@@ -12,7 +12,7 @@ public class CreditAccount extends Account {
     }
 
     @Override
-    public void withDraw(BigDecimal amount) throws NegativeValueException, Exception { //throws Exception
+    public void withDraw(BigDecimal amount) throws Exception {
         if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new NegativeValueException("The value of amount to withDraw cannot be negative");
         }
@@ -49,10 +49,11 @@ public class CreditAccount extends Account {
         Bank bank = NationalBank.getInstance().getByName(bankName);
         Account account = bank.getByNumber(accountNumber);
         BigDecimal balanceBeforeOperationForTargetAccount = account.getBalance();
-        super.topUp(amount.negate(),false);
+        topUp(amount.negate(),false);
         account.topUp(amount,false);
-        addTransactionLog(LocalDateTime.now(), "transfer Money", balanceBeforeOperation, getBalance());
-        account.addTransactionLog(LocalDateTime.now(), "transfer Money", balanceBeforeOperationForTargetAccount, account.getBalance());
+        addTransactionLog(LocalDateTime.now(), "transfer Money to the different account", balanceBeforeOperation, getBalance());
+        account.addTransactionLog(LocalDateTime.now(), "Getting transfer of money from different account", balanceBeforeOperationForTargetAccount, account.getBalance());
+        System.out.println("You have transfer "+amount+" to account number "+ accountNumber);
         return null;
     }
 }

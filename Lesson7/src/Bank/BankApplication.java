@@ -87,9 +87,9 @@ public class BankApplication {
         }
 
 
-        aliorCredit.getTransactionHistory();
-        aliorDeposit.getTransactionHistory();
-        mbankCredit.getTransactionHistory();
-        mbankDeposit.getTransactionHistory();
+        System.out.println(aliorCredit.getTransactionHistory());
+        System.out.println(aliorDeposit.getTransactionHistory());
+        System.out.println(mbankCredit.getTransactionHistory());
+        System.out.println(mbankDeposit.getTransactionHistory());
     }
 }
