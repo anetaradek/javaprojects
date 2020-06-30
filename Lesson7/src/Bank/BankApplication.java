@@ -34,25 +34,25 @@ public class BankApplication {
         mbank.addAccount(mbankCredit);
         mbank.addAccount(mbankDeposit);
         try {
-            aliorCredit.topUp(BigDecimal.valueOf(2000));
+            aliorCredit.topUp(BigDecimal.valueOf(2000),true);
         }
         catch (NegativeValueException e){
             System.out.println(e);
         }
         try{
-        aliorDeposit.topUp(BigDecimal.valueOf(1000));
+            aliorDeposit.topUp(BigDecimal.valueOf(1000),true);
         }
         catch (NegativeValueException e){
             System.out.println(e);
         }
         try {
-            mbankCredit.topUp(BigDecimal.valueOf(3000));
+            mbankCredit.topUp(BigDecimal.valueOf(3000),true);
         }
         catch (NegativeValueException e){
             System.out.println(e);
         }
         try {
-            mbankDeposit.topUp(BigDecimal.valueOf(4000));
+            mbankDeposit.topUp(BigDecimal.valueOf(4000),true);
         }
         catch (NegativeValueException e){
             System.out.println(e);
@@ -64,22 +64,20 @@ public class BankApplication {
         } catch (Exception e) {
             System.out.println(e);
         }
+        try {
+            aliorCredit.withDraw(BigDecimal.valueOf(200));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         try {
             aliorDeposit.transferMoney(mbank.getName(), mbankCredit.getAccountNumber(), BigDecimal.valueOf(200));
         } catch (Exception e) {
             System.out.println(e);
         }
-        try{
+
         mbankDeposit.applyPercentage();
-        }catch (Exception e) {
-            System.out.println(e);
-        }
-        try{
-            aliorDeposit.applyPercentage();
-        }catch (Exception e) {
-            System.out.println(e);
-        }
+        aliorDeposit.applyPercentage();
 
 
         try {

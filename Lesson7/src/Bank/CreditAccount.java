@@ -11,19 +11,19 @@ public class CreditAccount extends Account {
         this.creditLimit = creditLimit;
     }
 
-
     @Override
-    public void withDraw(BigDecimal amount) throws NegativeValueException,Exception{ //throws Exception
-        if(amount.compareTo(BigDecimal.ZERO)<0){
-            throw new NegativeValueException("The value of amount to transfer cannot be negative");
+    public void withDraw(BigDecimal amount) throws NegativeValueException, Exception { //throws Exception
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new NegativeValueException("The value of amount to withDraw cannot be negative");
         }
         BigDecimal balanceBeforeOperation = getBalance();
         if (amount.compareTo(getBalance().add(creditLimit)) <= 0) {
-            super.topUp(amount.negate());
+            topUp(amount.negate(),false);
             addTransactionLog(LocalDateTime.now(), "WithDraw", balanceBeforeOperation, getBalance());
-            System.out.println("You have withdrawn "+amount+". The balance now is: "+getBalance());
-        } if(amount.compareTo(getBalance().add(creditLimit)) > 0) {
-        throw new Exception("No sufficient funds exception");
+            System.out.println("You have withdrawn " + amount + ". The balance now is: " + getBalance());
+        }
+        if (amount.compareTo(getBalance().add(creditLimit)) > 0) {
+            throw new Exception("No sufficient funds exception");
         }
     }
 
@@ -31,31 +31,28 @@ public class CreditAccount extends Account {
     @Override
     public BigDecimal applyPercentage() throws NegativeValueException {
         BigDecimal balanceBeforeOperation = getBalance();
-            super.topUp(getBalance().multiply(getPercentsAsMultiplier()));
-            addTransactionLog(LocalDateTime.now(),"ApplyPercents",balanceBeforeOperation,getBalance());
-        System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
-        return getBalance();
+        topUp(getBalance().multiply(BigDecimal.valueOf(0.01)),false);
+        addTransactionLog(LocalDateTime.now(), "ApplyPercents", balanceBeforeOperation, getBalance());
+        System.out.println("You have apply " + getPercents() + "% on account balance. The balance now is: " + getBalance());
+        return null;
     }
 
     @Override
     public BigDecimal transferMoney(String bankName, int accountNumber, BigDecimal amount) throws Exception, NegativeValueException {
-        if (amount.compareTo(BigDecimal.ZERO)<0){
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new NegativeValueException("The value of amount to transfer cannot be negative");
         }
-        if (amount.compareTo(getBalance().add(creditLimit))> 0){
+        if (amount.compareTo(getBalance().add(creditLimit)) > 0) {
             throw new Exception("No sufficient funds exception");
         }
         BigDecimal balanceBeforeOperation = getBalance();
         Bank bank = NationalBank.getInstance().getByName(bankName);
         Account account = bank.getByNumber(accountNumber);
-        BigDecimal balanceBeforeOperationForTargetAccount =account.getBalance();
-        super.topUp(amount.negate());
-        account.topUp(amount);
-        addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperation,getBalance());
-        account.addTransactionLog(LocalDateTime.now(),"transfer Money",balanceBeforeOperationForTargetAccount,account.getBalance());
-        System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
-        return getBalance();
+        BigDecimal balanceBeforeOperationForTargetAccount = account.getBalance();
+        super.topUp(amount.negate(),false);
+        account.topUp(amount,false);
+        addTransactionLog(LocalDateTime.now(), "transfer Money", balanceBeforeOperation, getBalance());
+        account.addTransactionLog(LocalDateTime.now(), "transfer Money", balanceBeforeOperationForTargetAccount, account.getBalance());
+        return null;
     }
 }
-
-
