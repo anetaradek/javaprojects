@@ -30,7 +30,7 @@ public class DepositAccount extends Account {
         topUp(getBalance().multiply(BigDecimal.valueOf(0.01)),false);
         addTransactionLog(LocalDateTime.now(),"ApplyPercents",balanceBeforeOperation,getBalance());
         System.out.println("You have apply "+getPercents()+"% on account balance. The balance now is: "+getBalance());
-        return null;
+        return getBalance();
     }
 
     @Override
@@ -51,6 +51,6 @@ public class DepositAccount extends Account {
         account.addTransactionLog(LocalDateTime.now(),"getting transfer of money from different account",balanceBeforeOperationForTargetAccount,
                 account.getBalance());
         System.out.println("You have transfer "+amount+" to account number "+ accountNumber);
-        return null;
+        return getBalance();
     }
 }
